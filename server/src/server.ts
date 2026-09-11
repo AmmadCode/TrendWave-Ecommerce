@@ -8,6 +8,7 @@ import { errorHandler } from "./middleware/errorHandler";
 import { ok } from "./utils/envelope";
 import { authRouter } from "./routes/auth/auth.routes";
 import { clerkMiddleware } from "@clerk/express";
+import { adminProductRouter } from "./routes/admin/product.routes";
 
 async function mainEnryFunction() {
   await connectDB();
@@ -36,6 +37,12 @@ async function mainEnryFunction() {
 
   // auth routes
   app.use("/auth", authRouter);
+
+  // customer
+
+  // admin
+
+  app.use("/admin", adminProductRouter);
 
   app.use(notFound);
   app.use(errorHandler);
