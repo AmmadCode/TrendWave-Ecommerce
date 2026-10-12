@@ -1,4 +1,12 @@
-import mongoose from "mongoose";
+import mongoose, { HydratedDocument } from "mongoose";
+
+export type Category = {
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type categoryDocument = HydratedDocument<Category>;
 
 const categorySchema = new mongoose.Schema(
   {
@@ -12,4 +20,5 @@ const categorySchema = new mongoose.Schema(
 );
 
 export const Category =
-  mongoose.models.Category || mongoose.model("Category", categorySchema);
+  mongoose.models.Category ||
+  mongoose.model<Category>("Category", categorySchema);

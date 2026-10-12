@@ -9,6 +9,10 @@ import { ok } from "./utils/envelope";
 import { authRouter } from "./routes/auth/auth.routes";
 import { clerkMiddleware } from "@clerk/express";
 import { adminProductRouter } from "./routes/admin/product.routes";
+import { customerProductRouter } from "./routes/customer/product.routes";
+import { customerAddressRouter } from "./routes/customer/address.routes";
+import { adminPromoRouter } from "./routes/admin/promo.routes";
+import { customerPromoRouter } from "./routes/customer/promo.routes";
 
 async function mainEnryFunction() {
   await connectDB();
@@ -39,10 +43,13 @@ async function mainEnryFunction() {
   app.use("/auth", authRouter);
 
   // customer
+  app.use("/customer", customerProductRouter);
+  app.use("/customer", customerAddressRouter);
+  app.use("/customer", customerPromoRouter);
 
   // admin
-
   app.use("/admin", adminProductRouter);
+  app.use("/admin", adminPromoRouter);
 
   app.use(notFound);
   app.use(errorHandler);
